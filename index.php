@@ -9,21 +9,19 @@ $nome = $_GET['name'];
 $eta = $_GET['age'];
 $mail = $_GET['mail'];
 
-var_dump(is_nan($eta));
-
 if (empty($nome) || strlen($nome) < 3) {
     $mess = 'Accesso negato: nome non inserito o troppo corto';
 } else {
-    if (empty($eta) || is_int($eta) == false) {
+    if (empty($eta) || is_nan($eta)) {
         $mess = 'Accesso negato: inserire l\'età con un numero valido';
     } else {
         if (empty($mail)) {
-            $text = 'Accesso negato: non hai inserito la mail';
+            $mess = 'Accesso negato: non hai inserito la mail';
         } else {
             if ((strpos($mail, '@') !== false) && (strpos($mail, '.') !== false)) { // devo usare l'identità di genere, altrimenti lo 0 risulta false
-                $text = 'Accesso riuscito';
+                $mess = 'Accesso riuscito';
             } else {
-                $text = 'Accesso negato, mail non valida';
+                $mess = 'Accesso negato, mail non valida';
             }
         }
     }
